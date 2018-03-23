@@ -6,10 +6,6 @@ from tornado import websocket, web, ioloop
 from datetime import timedelta
 from random import randint
 
-paymentTypes = ["cash", "tab", "visa","mastercard","bitcoin"]
-namesArray = ['Ben', 'Jarrod', 'Vijay', 'Aziz']
-
-
 class WebSocketHandler(websocket.WebSocketHandler):
   #fix connect error 403
   def check_origin(self, origin):

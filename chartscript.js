@@ -1,17 +1,15 @@
     
     var where = window.location.hostname;
+    console.log(where);
+    //#this connect fails on aws; yes
+    
     var connection = new WebSocket('ws://'+where+':81/websocket');
     var tData =[];
     connection.onmessage = function(event) {
         var newData = JSON.parse(event.data);
         var updateObject =[{
-
             "Spent": newData.Spent,
         }]
-        //resetData(ndx, [yearDim, spendDim, nameDim]);
-        xfilter.add(updateObject);
-        dc.redrawAll();
-        //
         if (tData.length <= 40) {
             tData.push(newData.Spent);
         }
@@ -20,7 +18,7 @@
         }
         var x = tData.join(', ');
         document.getElementById("tickerdata").innerHTML = x;
-
+        console.log("x: "+x);
         // refresh baseline:
         var c = document.getElementById("canvas-chart");
         var ctx = c.getContext("2d");
